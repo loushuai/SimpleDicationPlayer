@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+div {text-align: center;}
+</style>
+</head>
+<body>
+<div><video id="video_id" controls=""></video></div>
+<div><input type="file" id="file" onchange="onInputFileChange()"></div>
+<div>
+	<button class="button" id="playButton">Play</button>
+	<button class="button" id="pauseButton">Pause</button>
+</div>
+<div>
+	<button class="button" id="seekBackwardButton2s">-2s</button>
+	<button class="button" id="seekForwardButton2s">+2s</button>
+</div>
+<div>
+	<button class="button" id="seekBackwardButton5s">-5s</button>
+	<button class="button" id="seekForwardButton5s">+5s</button>
+</div>
+<div>
+	<button class="button" id="seekBackwardButton10s">-10s</button>
+	<button class="button" id="seekForwardButton10s">+10s</button>
+</div>
+<div>
+	<button class="button" id="seekBackwardButton15s">-15s</button>
+	<button class="button" id="seekForwardButton15s">+15s</button>
+</div>
+<div>
+	<select id="speedUpOptions">
+		<option value="1">1</option>
+		<option value="0.25">0.25</option>
+		<option value="0.5">0.5</option>
+		<option value="0.75">0.75</option>
+		<option value="1.25">1.25</option>
+		<option value="1.5">1.5</option>
+		<option value="1.75">1.75</option>
+		<option value="2">2</option>
+	</select>
+	<button class="button" id="speedUpButton">speed up</button>
+</div>
+
+<script>
+var video = document.getElementById('video_id');
+
+function onInputFileChange() {
+	var file = document.getElementById('file').files[0];
+	var url = URL.createObjectURL(file);
+	console.log(url);
+	video.src = url;
+	video.play();
+}
+
+playButton.addEventListener('click', function(event) {
+  video.play();
+});
+
+pauseButton.addEventListener('click', function(event) {
+  video.pause();
+});
+
+seekForwardButton2s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime + 2, video.duration);
+});
+
+seekBackwardButton2s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime - 2, video.duration);
+})
+
+seekForwardButton5s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime + 5, video.duration);
+});
+
+seekBackwardButton5s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime - 5, video.duration);
+})
+
+seekForwardButton10s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime + 10, video.duration);
+});
+
+seekBackwardButton10s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime - 10, video.duration);
+});
+
+seekForwardButton15s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime + 15, video.duration);
+});
+
+seekBackwardButton15s.addEventListener('click', function(event) {
+  event.stopPropagation();
+  video.currentTime = Math.min(video.currentTime - 15, video.duration);
+});
+
+speedUpButton.addEventListener('click', function(event) {
+	var e = document.getElementById("speedUpOptions");
+	video.playbackRate = e.value;
+})
+</script>
+</body>
+</html>
